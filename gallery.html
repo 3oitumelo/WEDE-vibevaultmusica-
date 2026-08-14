@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UFT-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <title> VibeVault Musica - Your Sound, Your Store.</title>
+        <link rel="stylesheet" href="style.css">
+<style>
+    :root{
+    --black:#121212;
+    --purple: #7B2CBF;
+    --gold: #FFD700;
+    --white: #ffffff;
+    --bg: var(--black);
+    --text: var(--white);
+}
+
+body.light{
+    --bg: var(--white);
+    --text: var(--black);
+}
+
+*{ margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+body{
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+header{
+    background: var(--purple);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a{
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {color: var(--gold); }
+
+.hero{
+    text-align: center;
+    padding: 4rem 1rem;
+    background: linear-gradient(to right, var(--purple), var(--black)) ;
+}
+.hero h1{ font: 2.5rem; color: var(--gold);}
+
+.btn { 
+    background: var(--gold);
+    color: var(--black);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover{ opacity: 0.8; }
+
+.product-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.product{
+    background: #1e1e1e;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+footer{
+    background: var(--purple);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+</style>
+       
+    </head>
+    
+    <body>
+        <header>
+            <h2> VibeVault<span style="color:var(--gold)"></span></h2>
+            <nav>
+                <a href="vibevault.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="shop.html">Shop</a>
+                <a href="contact.html">Contact</a>
+                <button id="theme-toggle"></button>
+
+            </nav>
+        </header>
+
+        <main>
+            <h1 align="center"> <u><i> Gallery page!</i></u></h1>
+            <img src="images/WhatsApp Image 2026-08-13 at 22.55.11 (2).jpeg" style="width:400px;height:395px;">
+            <img src="images/WhatsApp Image 2026-08-13 at 22.55.11 (1).jpeg" style="width:400px;height:395px;">
+            <img src="images/WhatsApp Image 2026-08-13 at 22.55.11 (3).jpeg" style="width:400px;height:395px,">
+            <img src="images/WhatsApp Image 2026-08-13 at 22.55.11 (4).jpeg" style="width:400px;height:395px;">
+            <img src="images/WhatsApp Image 2026-08-13 at 18.53.16.jpeg" style="width:400px;height:395px">
+            <img src="images/WhatsApp Image 2026-08-13 at 17.08.03.jpeg" style="width:400px;height:395px">
+
+        </main>
+        <footer>
+            <p>Contact: info@VibeVaultmusica.co.za | Phone: 011 555 0123 | Whatsapp: 078 555 0123</p>
+            <p> 2026 VibeVault Musica - Alexandra, South African</p>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
