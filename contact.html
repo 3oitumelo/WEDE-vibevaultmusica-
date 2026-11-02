@@ -3,232 +3,65 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contact Us</title>
-        <link rel="stylesheet" href="style.css">
-<style>
-    :root{
-    --black:#121212;
-    --purple: #7B2CBF;
-    --gold: #FFD700;
-    --white: #ffffff;
-    --bg: var(--black);
-    --text: var(--white);
-}
-
-body.light{
-    --bg: var(--white);
-    --text: var(--black);
-}
-
-*{ margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-
-body{
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-}
-
-header{
-    background: var(--purple);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav a{
-    color: var(--white);
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-}
-
-nav a:hover {color: var(--gold); }
-
-.hero{
-    text-align: center;
-    padding: 4rem 1rem;
-    background: linear-gradient(to right, var(--purple), var(--black)) ;
-}
-.hero h1{ font: 2.5rem; color: var(--gold);}
-
-.btn { 
-    background: var(--gold);
-    color: var(--black);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn:hover{ opacity: 0.8; }
-
-.product-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    padding: 2rem;
-}
-
-.product{
-    background: #1e1e1e;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-}
-
-footer{
-    background: var(--purple);
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-/* Custom VibeVault Styled Form */
-.form {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  font-family: inherit;
-  gap: 15px;
-  padding-inline: 2em;
-  padding-bottom: 0.4em;
-  background-color: var(--black);
-  border-radius: 20px;
-}
-
-.form-heading {
-  text-align: center;
-  margin: 1.5em 0 0.5em 0;
-  color: var(--gold);
-  font-size: 1.4em;
-  font-weight: bold;
-  background-color: transparent;
-  align-self: center;
-}
-
-.form-field {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  border-radius: 10px;
-  padding: 0.6em;
-  border: 1px solid rgba(123, 44, 191, 0.3);
-  outline: none;
-  color: white;
-  background-color: #1e1e1e;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-}
-
-.input-field {
-  background: none;
-  border: none;
-  outline: none;
-  width: 100%;
-  color: var(--white);
-  padding-inline: 0.5em;
-  font-size: 1rem;
-}
-
-.sendMessage-btn {
-  cursor: pointer;
-  margin-top: 1em;
-  margin-bottom: 2em;
-  padding: 1em;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: var(--gold);
-  font-weight: bold;
-  outline: 2px solid var(--gold);
-  transition: all ease-in-out 0.3s;
-}
-
-.sendMessage-btn:hover {
-  transition: all ease-in-out 0.3s;
-  background-color: var(--gold);
-  color: var(--black);
-  cursor: pointer;
-  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.4);
-}
-
-.form-card1 {
-  background-image: linear-gradient(163deg, var(--purple) 0%, var(--gold) 100%);
-  border-radius: 22px;
-  transition: all 0.3s;
-  padding: 2px;
-}
-
-.form-card1:hover {
-  box-shadow: 0px 0px 25px 2px rgba(123, 44, 191, 0.6);
-}
-
-.form-card2 {
-  border-radius: 20px;
-  transition: all 0.2s;
-  background-color: var(--black);
-}
-
-.form-card2:hover {
-  transform: scale(0.99);
-}
-
-</style>
-       
+        <title>VibeVault Musica - Contact Us</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
-    
+
     <body>
         <header>
-            <h2> VibeVault<span style="color:var(--gold)"></span></h2>
+            <h2>VibeVault<span class="text-gold"></span></h2>
             <nav>
                 <a href="vibevault.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="gallery.html">Gallery</a>
                 <a href="shop.html">Shop</a>
-                <a href="contact.html">Contact</a>
-                <button id="theme-toggle"></button>
-
+                <a href="contact.html" aria-current="page">Contact</a>
+                <button id="theme-toggle" aria-label="Toggle light/dark theme"></button>
             </nav>
         </header>
-<main style="padding: 2rem;">
-    <h1><u><i>Contact Us here:</i></u></h1>
-    
-    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7166.073596421272!2d28.101666792953655!3d-26.09771743861313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sadams%20place%20alexandra%20township%2017th%20hoffmeyer!5e0!3m2!1sen!2sza!4v1786706932596!5m2!1sen!2sza" width="100%" height="450" style="border:0; max-width:600px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
-    <h3 style="margin-top: 40px"> GET IN TOUCH!</h3>
-    <p style="color: rgb(255, 255, 255);"> Email:info@VibeVaultmusica.co.za<br>Phone:011 555 0123 <br> Hours: Friday - Sunday, 14:00-21:00</p>
+        <main>
+            <h1>Contact Us</h1>
 
-    <div class="form-card1" style="max-width: 500px; margin-top: 20px;">
-      <div class="form-card2">
-        <form class="form" action="#">
-          <p class="form-heading">Send Us a Message</p>
+            <iframe
+                class="map-frame"
+                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7166.073596421272!2d28.101666792953655!3d-26.09771743861313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sadams%20place%20alexandra%20township%2017th%20hoffmeyer!5e0!3m2!1sen!2sza!4v1786706932596!5m2!1sen!2sza"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                title="VibeVault Musica location map"></iframe>
 
-          <div class="form-field">
-            <input type="text" id="name" placeholder="Full Name" class="input-field" required />
-          </div>
+            <h3>Get In Touch!</h3>
+            <p class="contact-hours">Email: info@VibeVaultmusica.co.za<br>Phone: 011 555 0123<br>Hours: Friday - Sunday, 14:00-21:00</p>
 
-          <div class="form-field">
-            <input type="email" id="email" name="email" placeholder="Email Address" class="input-field" required />
-          </div>
+            <div class="form-card1">
+                <div class="form-card2">
+                    <form class="form" action="molefeann88@gmail.com">
+                        <p class="form-heading">Send Us a Message</p>
 
-          <div class="form-field">
-            <textarea id="message" name="message" rows="5" placeholder="Your Message" class="input-field" style="resize: vertical;"></textarea>
-          </div>
+                        <div class="form-field">
+                            <input type="text" id="name" placeholder="Full Name" class="input-field" required />
+                        </div>
 
-          <button type="submit" class="sendMessage-btn">Send Message</button>
-        </form>
-      </div>
-    </div>
-</main>
+                        <div class="form-field">
+                            <input type="email" id="email" name="email" placeholder="Email Address" class="input-field" required />
+                        </div>
+
+                        <div class="form-field">
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" class="input-field textarea"></textarea>
+                        </div>
+
+                        <button type="submit" class="sendMessage-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </main>
 
         <footer>
             <p>Contact: info@VibeVaultmusica.co.za | Phone: 011 555 0123 | Whatsapp: 078 555 0123</p>
-            <p> 2026 VibeVault Musica - Alexandra, South Africa</p>
+            <p>&copy; 2026 VibeVault Musica - Alexandra, South Africa</p>
         </footer>
 
-        <script src="script.js"></script>
+        <script src="js/javascript.js"></script>
     </body>
 </html>

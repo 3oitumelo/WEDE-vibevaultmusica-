@@ -1,32 +1,63 @@
 /* ==========================================================================
-   VibeVault Musica - External Master Stylesheet
+   VibeVault Musica — External Master Stylesheet
+   One stylesheet, linked from every page (see <head> of each .html file).
+   Organised as:
+     1. CSS Reset / Base Style
+     2. Typography Scale
+     3. Layout Structure (Header/Nav, Hero, Main, Footer, Grids/Flexbox)
+     4. Visual Styles (colour, decoration, shadows) + Pseudo-classes
+     5. Component Styles (buttons, cards, forms, gallery, map)
+     6. Responsive Design (relative units, breakpoints, media queries)
    ========================================================================== */
 
-:root {
-  --black: #121212;
-  --purple: #7B2CBF;
-  --gold: #FFD700;
-  --white: #ffffff;
-  --card-bg: #1e1e1e;
-}
-
-/* Reset Defaults */
+/* --------------------------------------------------------------------------
+   1. CSS Reset / Base Style
+   -------------------------------------------------------------------------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Global Dark Theme Base */
+:root {
+  /* Colour scheme */
+  --black: #121212;
+  --purple: #7B2CBF;
+  --purple-light: #9d4edd;
+  --gold: #FFD700;
+  --gold-dark: #e6c200;
+  --white: #ffffff;
+  --card-bg: #1e1e1e;
+  --muted-text: #cccccc;
+
+  /* Typography scale (relative units) */
+  --font-base: "Segoe UI", Arial, Helvetica, sans-serif;
+  --step--1: clamp(0.8rem, 0.77rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.19rem + 0.3vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.45rem + 0.6vw, 2rem);
+  --step-3: clamp(2rem, 1.7rem + 1.2vw, 2.75rem);
+
+  /* Layout */
+  --max-content-width: 1100px;
+  --radius: 10px;
+}
+
+html {
+  font-size: 100%; /* 1rem = 16px, scales with user/browser settings */
+  scroll-behavior: smooth;
+}
+
 html, body {
-  background-color: #121212 !important;
-  color: #ffffff !important;
+  background-color: var(--black);
+  color: var(--white);
   min-height: 100vh;
 }
 
-/* Animated Striped Background */
 body {
+  font-family: var(--font-base);
+  font-size: var(--step-0);
+  line-height: 1.6;
   background: linear-gradient(
     135deg,
     #121212 25%,
@@ -38,17 +69,62 @@ body {
     #1a1a1a
   );
   background-size: 40px 40px;
-  animation: move 4s linear infinite;
-  line-height: 1.6;
+  animation: move 6s linear infinite;
 }
 
 @keyframes move {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 40px 40px;
-  }
+  0%   { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+  * { scroll-behavior: auto; }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Typography Scale
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.6em;
+}
+
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); color: var(--gold); }
+h3 { font-size: var(--step-1); }
+h4, h5, h6 { font-size: var(--step-0); }
+
+p {
+  font-size: var(--step-0);
+  margin-bottom: 1em;
+}
+
+small, .fine-print { font-size: var(--step--1); color: var(--muted-text); }
+
+/* --------------------------------------------------------------------------
+   3. Layout Structure
+   -------------------------------------------------------------------------- */
+.container {
+  width: min(92%, var(--max-content-width));
+  margin-inline: auto;
 }
 
 /* Header & Navigation */
@@ -56,13 +132,27 @@ header {
   background-color: var(--purple);
   padding: 1rem 2rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 header h2 {
   color: var(--white);
+  margin-bottom: 0;
+  font-size: var(--step-1);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
 }
 
 nav a {
@@ -70,139 +160,82 @@ nav a {
   text-decoration: none;
   margin: 0 12px;
   font-weight: bold;
-  transition: color 0.2s ease-in-out;
+  padding: 0.25em 0.1em;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-nav a:hover {
+nav a:hover,
+nav a:focus-visible {
   color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+nav a:active {
+  color: var(--gold-dark);
+}
+
+/* Highlights the nav link for the page currently being viewed */
+nav a[aria-current="page"] {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+#theme-toggle {
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  border-radius: 999px;
+  width: 2.2em;
+  height: 2.2em;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#theme-toggle:hover,
+#theme-toggle:focus-visible {
+  background-color: var(--gold);
+  color: var(--black);
 }
 
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 4rem 1rem;
+  padding: clamp(2.5rem, 6vw, 4rem) 1rem;
   background: linear-gradient(180deg, var(--purple), var(--black));
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: var(--step-3);
   color: var(--gold);
   margin-bottom: 0.5rem;
 }
 
 .hero p {
   color: var(--white);
-  font-size: 1.1rem;
+  font-size: var(--step-0);
+  max-width: 40em;
+  margin-inline: auto;
 }
 
-/* General Buttons */
-.btn { 
-  background-color: var(--gold);
-  color: var(--black);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.2s ease-in-out;
+.hero .btn {
+  margin-top: 1.5rem;
 }
 
-.btn:hover {
-  background-color: #e6c200;
+/* Generic page main content wrapper (replaces old inline "padding:40px" etc.) */
+main {
+  width: min(92%, var(--max-content-width));
+  margin-inline: auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0;
 }
 
-/* Product Cards & Grid */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
+main > * + * {
+  margin-top: 1.5rem;
 }
 
-.product {
-  background-color: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-  border: 1px solid rgba(123, 44, 191, 0.3);
-}
-
-.product h3 {
-  color: var(--white);
-  margin-bottom: 0.5rem;
-}
-
-.product p {
-  color: #ccc;
-  margin-bottom: 0.8rem;
-}
-
-/* Form Styles */
-.form-card1 {
-  background-image: linear-gradient(163deg, var(--purple) 0%, var(--gold) 100%);
-  border-radius: 22px;
-  padding: 2px;
-  transition: all 0.3s;
-}
-
-.form-card1:hover {
-  box-shadow: 0px 0px 25px 2px rgba(123, 44, 191, 0.6);
-}
-
-.form-card2 {
-  border-radius: 20px;
-  background-color: var(--black);
-  padding: 1rem;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.form-heading {
-  text-align: center;
-  color: var(--gold);
-  font-size: 1.4em;
-  font-weight: bold;
-  margin-bottom: 0.5em;
-}
-
-.form-field {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 0.6em;
-  border: 1px solid rgba(123, 44, 191, 0.3);
-}
-
-.input-field {
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 100%;
-  color: var(--white);
-  font-size: 1rem;
-}
-
-.sendMessage-btn {
-  cursor: pointer;
-  margin-top: 1em;
-  padding: 0.8em;
-  border-radius: 10px;
-  border: 2px solid var(--gold);
-  background-color: transparent;
-  color: var(--gold);
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-}
-
-.sendMessage-btn:hover {
-  background-color: var(--gold);
-  color: var(--black);
-  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.4);
+/* Section that wraps the Featured Gear / Shop product grid */
+.section-padded {
+  padding: 2rem clamp(1rem, 4vw, 2rem);
 }
 
 /* Footer */
@@ -216,4 +249,426 @@ footer {
 
 footer p {
   margin: 0.3rem 0;
+  font-size: var(--step--1);
+}
+
+/* --------------------------------------------------------------------------
+   4. Visual Styles + Pseudo-classes
+   -------------------------------------------------------------------------- */
+.text-gold   { color: var(--gold); }
+.text-center { text-align: center; }
+.bg-card     { background-color: var(--card-bg); border-radius: var(--radius); }
+
+/* Reusable "info card" used on About/Contact for blocks that used to be
+   inline-styled <div style="background:black; ..."> */
+.info-card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(123, 44, 191, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.info-card h3,
+.info-card h4,
+.info-card h5,
+.info-card h6 {
+  color: var(--purple-light);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.who-we-serve-list {
+  list-style: disc;
+  margin-left: 1.5rem;
+  line-height: 2;
+}
+
+/* --------------------------------------------------------------------------
+   5. Component Styles
+   -------------------------------------------------------------------------- */
+
+/* Buttons */
+.btn {
+  background-color: var(--gold);
+  color: var(--black);
+  padding: 0.65em 1.3em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: var(--step--1);
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--gold-dark);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.filter-bar {
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.filter-btn {
+  background-color: transparent;
+  color: var(--white);
+  border: 2px solid var(--purple-light);
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+  background-color: var(--purple-light);
+  color: var(--white);
+}
+
+.filter-btn.active {
+  background-color: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+
+/* Product Cards & Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.product {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(123, 44, 191, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.product:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(123, 44, 191, 0.35);
+}
+
+.product h3 {
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.product p {
+  color: var(--muted-text);
+  margin-bottom: 0.8rem;
+}
+
+.product .price {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 4;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid rgba(123, 44, 191, 0.3);
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+.gallery-grid img:hover,
+.gallery-grid img:focus-visible {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.25);
+}
+
+/* Map / iframe */
+.map-frame {
+  border: 0;
+  width: 100%;
+  max-width: 600px;
+  height: 450px;
+  border-radius: var(--radius);
+}
+
+/* Form Styles */
+.form-card1 {
+  background-image: linear-gradient(163deg, var(--purple) 0%, var(--gold) 100%);
+  border-radius: 22px;
+  padding: 2px;
+  max-width: 500px;
+  margin-top: 1.25rem;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.form-card1:hover {
+  box-shadow: 0px 0px 25px 2px rgba(123, 44, 191, 0.6);
+}
+
+.form-card2 {
+  border-radius: 20px;
+  background-color: var(--black);
+  padding: 1.25rem 2rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.form-card2:hover {
+  transform: scale(0.99);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-heading {
+  text-align: center;
+  color: var(--gold);
+  font-size: var(--step-1);
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.form-field {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 0.6em;
+  border: 1px solid rgba(123, 44, 191, 0.3);
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  transition: border-color 0.2s ease-in-out;
+}
+
+.form-field:focus-within {
+  border-color: var(--gold);
+}
+
+.input-field {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--white);
+  font-size: var(--step-0);
+}
+
+.input-field.textarea {
+  resize: vertical;
+}
+
+.sendMessage-btn {
+  cursor: pointer;
+  margin-top: 1em;
+  padding: 0.8em;
+  border-radius: 10px;
+  border: 2px solid var(--gold);
+  background-color: transparent;
+  color: var(--gold);
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.sendMessage-btn:hover,
+.sendMessage-btn:focus-visible {
+  background-color: var(--gold);
+  color: var(--black);
+  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.4);
+}
+
+.sendMessage-btn:active {
+  transform: scale(0.98);
+}
+
+.contact-hours {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   6. Responsive Design — breakpoints, relative units, responsive images
+   -------------------------------------------------------------------------- */
+
+/* Tablet breakpoint: switch multi-column layouts to a tighter grid */
+@media screen and (max-width: 768px) {
+  header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.5rem 0.6rem;
+  }
+
+  nav a {
+    margin: 0;
+    font-size: var(--step--1);
+  }
+
+  .hero {
+    padding: 2.5rem 1rem;
+  }
+
+  main {
+    width: 94%;
+  }
+
+  .product-grid,
+  .about-grid,
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .form-card1 {
+    max-width: 100%;
+  }
+
+  .map-frame {
+    height: 320px;
+  }
+}
+
+/* Mobile breakpoint: collapse to a single column, shrink spacing/typography */
+@media screen and (max-width: 480px) {
+  html { font-size: 93.75%; } /* 15px base — scales rem/em typography down slightly */
+
+  header {
+    padding: 0.75rem 1rem;
+  }
+
+  header h2 {
+    font-size: var(--step-0);
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  nav a {
+    margin: 0;
+    padding: 0.3em 0;
+  }
+
+  .hero h1 {
+    font-size: var(--step-2);
+  }
+
+  .product-grid,
+  .about-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    gap: 0.4rem;
+  }
+
+  .filter-btn,
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-card2 {
+    padding: 1rem;
+  }
+
+  footer {
+    padding: 1.25rem 1rem;
+  }
+}
+/* ==========================================================================
+   Gallery Lightbox Slideshow Styles
+   ========================================================================== */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80vh;
+  border-radius: var(--radius);
+  object-fit: contain;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-lightbox:hover,
+.close-lightbox:focus {
+  color: var(--gold);
+}
+
+.lightbox-prev,
+.lightbox-next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 4px;
+  user-select: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background-color: var(--purple);
+  color: var(--gold);
 }

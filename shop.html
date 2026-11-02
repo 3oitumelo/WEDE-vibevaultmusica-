@@ -1,163 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UFT-8">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title> VibeVault Musica - Your Sound, Your Store.</title>
-        <link rel="stylesheet" href="style.css">
-<style>
-    :root{
-    --black:#121212;
-    --purple: #7B2CBF;
-    --gold: #FFD700;
-    --white: #ffffff;
-    --bg: var(--black);
-    --text: var(--white);
-}
-
-body.light{
-    --bg: var(--white);
-    --text: var(--black);
-}
-
-*{ margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-
-body{
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-}
-
-header{
-    background: var(--purple);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav a{
-    color: var(--white);
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-}
-
-nav a:hover {color: var(--gold); }
-
-.hero{
-    text-align: center;
-    padding: 4rem 1rem;
-    background: linear-gradient(to right, var(--purple), var(--black)) ;
-}
-.hero h1{ font: 2.5rem; color: var(--gold);}
-
-.btn { 
-    background: var(--gold);
-    color: var(--black);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn:hover{ opacity: 0.8; }
-
-.product-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    padding: 2rem;
-}
-
-.product{
-    background: #1e1e1e;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-}
-
-footer{
-    background: var(--purple);
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-</style>
-       
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VibeVault Musica - Shop</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
-    
+
     <body>
         <header>
-            <h2> VibeVault<span style="color:var(--gold)"></span></h2>
+            <h2>VibeVault<span class="text-gold"></span></h2>
             <nav>
                 <a href="vibevault.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="gallery.html">Gallery</a>
-                 <a href="shop.html">Shop</a>
+                <a href="shop.html" aria-current="page">Shop</a>
                 <a href="contact.html">Contact</a>
-                <button id="theme-toggle"></button>
-
+                <button id="theme-toggle" aria-label="Toggle light/dark theme"></button>
             </nav>
         </header>
 
-  <section style="padding:2rem">
-    <h1 style="color:var(--gold); text-align:center">Shop VibeVault Merch</h1>
-    <p style="text-align:center; margin-bottom:1.5rem">Instruments, Vinyl, Accessories & Band Merch</p>
+        <section class="section-padded">
+            <h1 class="text-center text-gold">Shop VibeVault Merch</h1>
+            <p class="text-center">Instruments, Vinyl, Accessories & Band Merch</p>
 
-    <!-- Category Filter Buttons -->
-    <div style="text-align:center; margin-bottom:2rem">
-      <button class="filter-btn btn" onclick="filterProducts('all')">All</button>
-      <button class="filter-btn btn" onclick="filterProducts('instruments')">Instruments</button>
-      <button class="filter-btn btn" onclick="filterProducts('vinyl')">Vinyl</button>
-      <button class="filter-btn btn" onclick="filterProducts('accessories')">Accessories</button>
-      <button class="filter-btn btn" onclick="filterProducts('merch')">Band Merch</button>
-    </div>
+            <!-- Category Filter Buttons -->
+            <div class="filter-bar">
+                <button class="filter-btn btn active" onclick="filterProducts('all')">All</button>
+                <button class="filter-btn btn" onclick="filterProducts('instruments')">Instruments</button>
+                <button class="filter-btn btn" onclick="filterProducts('vinyl')">Vinyl</button>
+                <button class="filter-btn btn" onclick="filterProducts('accessories')">Accessories</button>
+                <button class="filter-btn btn" onclick="filterProducts('merch')">Band Merch</button>
+            </div>
 
-    <!-- Product Grid -->
-    <div class="product-grid" id="product-list">
-      
-      <!-- Instruments -->
-      <div class="product" data-category="instruments">
-        <h3>Acoustic Guitar</h3>
-        <p>Perfect for beginners</p>
-        <p style="color:var(--gold); font-weight:bold">R1,200</p>
-        <a href="https://wa.me/27785550123?text=Hi%20I%20want%20to%20order%20Acoustic%20Guitar" class="btn">Order on WhatsApp</a>
-      </div>
+            <!-- Product Grid -->
+            <div class="product-grid" id="product-list">
 
-      <!-- Vinyl -->
-      <div class="product" data-category="vinyl">
-        <h3>Classic SA Jazz Vinyl</h3>
-        <p>Hugh Masekela - Limited Edition</p>
-        <p style="color:var(--gold); font-weight:bold">R350</p>
-        <a href="https://wa.me/27785550123?text=Hi%20I%20want%20to%20order%20Classic%20SA%20Jazz%20Vinyl" class="btn">Order on WhatsApp</a>
-      </div>
+                <!-- Instruments -->
+                <div class="product" data-category="instruments">
+                    <h3>Acoustic Guitar</h3>
+                    <p>Perfect for beginners</p>
+                    <p class="price">R1,200</p>
+                    <a href="https://wa.me/27785550123?text=Hi%20I%20want%20to%20order%20Acoustic%20Guitar" class="btn">Order on WhatsApp</a>
+                </div>
 
+                <!-- Vinyl -->
+                <div class="product" data-category="vinyl">
+                    <h3>Classic SA Jazz Vinyl</h3>
+                    <p>Hugh Masekela - Limited Edition</p>
+                    <p class="price">R350</p>
+                    <a href="https://wa.me/27785550123?text=Hi%20I%20want%20to%20order%20Classic%20SA%20Jazz%20Vinyl" class="btn">Order on WhatsApp</a>
+                </div>
 
-      <!-- Accessories -->
-      <div class="product" data-category="accessories">
-        <h3>Studio Headphones</h3>
-        <p>Noise cancelling</p>
-        <p style="color:var(--gold); font-weight:bold">R850</p>
-        <a href="https://wa.me/27785550123?text=Hi%20I%20want%20to%20order%20Studio%20Headphones" class="btn">Order on WhatsApp</a>
-      </div>
+                <!-- Accessories -->
+                <div class="product" data-category="accessories">
+                    <h3>Studio Headphones</h3>
+                    <p>Noise cancelling</p>
+                    <p class="price">R850</p>
+                    <a href="https://wa.me/27785550123?text=Hi%20I%20want%20to%20order%20Studio%20Headphones" class="btn">Order on WhatsApp</a>
+                </div>
 
-      <!-- Band Merch -->
-      <div class="product" data-category="merch">
-        <h3>VibeVault T-Shirt</h3>
-        <p>Black with Gold Logo - All Sizes</p>
-        <p style="color:var(--gold); font-weight:bold">R250</p>
-        <a href="https://wa.me/27785550123?text=Hi%20I%20want%20to%20order%20VibeVault%20T-Shirt" class="btn">Order on WhatsApp</a>
-      </div>
+                <!-- Band Merch -->
+                <div class="product" data-category="merch">
+                    <h3>VibeVault T-Shirt</h3>
+                    <p>Black with Gold Logo - All Sizes</p>
+                    <p class="price">R250</p>
+                    <a href="https://wa.me/27785550123?text=Hi%20I%20want%20to%20order%20VibeVault%20T-Shirt" class="btn">Order on WhatsApp</a>
+                </div>
 
-  </section>
+            </div>
+        </section>
 
         <footer>
             <p>Contact: info@VibeVaultmusica.co.za | Phone: 011 555 0123 | Whatsapp: 078 555 0123</p>
-            <p> 2026 VibeVault Musica - Alexandra, South African</p>
+            <p>&copy; 2026 VibeVault Musica - Alexandra, South Africa</p>
         </footer>
 
         <script src="script.js"></script>

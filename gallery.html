@@ -1,124 +1,83 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UFT-8">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title> VibeVault Musica - Your Sound, Your Store.</title>
-        <link rel="stylesheet" href="style.css">
-<style>
-    :root{
-    --black:#121212;
-    --purple: #7B2CBF;
-    --gold: #FFD700;
-    --white: #ffffff;
-    --bg: var(--black);
-    --text: var(--white);
-}
-
-body.light{
-    --bg: var(--white);
-    --text: var(--black);
-}
-
-*{ margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-
-body{
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-}
-
-header{
-    background: var(--purple);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav a{
-    color: var(--white);
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-}
-
-nav a:hover {color: var(--gold); }
-
-.hero{
-    text-align: center;
-    padding: 4rem 1rem;
-    background: linear-gradient(to right, var(--purple), var(--black)) ;
-}
-.hero h1{ font: 2.5rem; color: var(--gold);}
-
-.btn { 
-    background: var(--gold);
-    color: var(--black);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn:hover{ opacity: 0.8; }
-
-.product-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    padding: 2rem;
-}
-
-.product{
-    background: #1e1e1e;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-}
-
-footer{
-    background: var(--purple);
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-</style>
-       
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VibeVault Musica - Gallery</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
-    
+
     <body>
         <header>
-            <h2> VibeVault<span style="color:var(--gold)"></span></h2>
+            <h2>VibeVault<span class="text-gold"></span></h2>
             <nav>
                 <a href="vibevault.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="gallery.html">Gallery</a>
+                <a href="gallery.html" aria-current="page">Gallery</a>
                 <a href="shop.html">Shop</a>
                 <a href="contact.html">Contact</a>
-                <button id="theme-toggle"></button>
-
+                <button id="theme-toggle" aria-label="Toggle light/dark theme"></button>
             </nav>
         </header>
 
         <main>
-            <h1 align="center"> <u><i> Gallery page!</i></u></h1>
-            <img src="images/WhatsApp Image 2026-08-13 at 22.55.11 (2).jpeg" style="width:400px;height:395px;">
-            <img src="images/WhatsApp Image 2026-08-13 at 22.55.11 (1).jpeg" style="width:400px;height:395px;">
-            <img src="images/WhatsApp Image 2026-08-13 at 22.55.11 (3).jpeg" style="width:400px;height:395px,">
-            <img src="images/WhatsApp Image 2026-08-13 at 22.55.11 (4).jpeg" style="width:400px;height:395px;">
-            <img src="images/WhatsApp Image 2026-08-13 at 18.53.16.jpeg" style="width:400px;height:395px">
-            <img src="images/WhatsApp Image 2026-08-13 at 17.08.03.jpeg" style="width:400px;height:395px">
+            <h1 class="text-center">Gallery</h1>
+            <div class="gallery-grid">
+                <img
+                    src="images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_2_800w.jpg"
+                    srcset="images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_2_400w.jpg 400w,
+                            images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_2_800w.jpg 800w"
+                    sizes="(max-width: 480px) 90vw, (max-width: 768px) 45vw, 280px"
+                    alt="VibeVault Musica community event photo 1"
+                    loading="lazy">
 
+                <img
+                    src="images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_1_800w.jpg"
+                    srcset="images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_1_400w.jpg 400w,
+                            images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_1_800w.jpg 800w"
+                    sizes="(max-width: 480px) 90vw, (max-width: 768px) 45vw, 280px"
+                    alt="VibeVault Musica community event photo 2"
+                    loading="lazy">
+
+                <img
+                    src="images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_3_800w.jpg"
+                    srcset="images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_3_400w.jpg 400w,
+                            images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_3_800w.jpg 800w"
+                    sizes="(max-width: 480px) 90vw, (max-width: 768px) 45vw, 280px"
+                    alt="VibeVault Musica community event photo 3"
+                    loading="lazy">
+
+                <img
+                    src="images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_4_800w.jpg"
+                    srcset="images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_4_400w.jpg 400w,
+                            images/responsive/WhatsApp_Image_2026-08-13_at_22.55.11_4_800w.jpg 800w"
+                    sizes="(max-width: 480px) 90vw, (max-width: 768px) 45vw, 280px"
+                    alt="VibeVault Musica community event photo 4"
+                    loading="lazy">
+
+                <img
+                    src="images/responsive/WhatsApp_Image_2026-08-13_at_18.53.16_800w.jpg"
+                    srcset="images/responsive/WhatsApp_Image_2026-08-13_at_18.53.16_400w.jpg 400w,
+                            images/responsive/WhatsApp_Image_2026-08-13_at_18.53.16_800w.jpg 800w"
+                    sizes="(max-width: 480px) 90vw, (max-width: 768px) 45vw, 280px"
+                    alt="VibeVault Musica community event photo 5"
+                    loading="lazy">
+
+                <img
+                    src="images/responsive/WhatsApp_Image_2026-08-13_at_17.08.03_800w.jpg"
+                    srcset="images/responsive/WhatsApp_Image_2026-08-13_at_17.08.03_400w.jpg 400w,
+                            images/responsive/WhatsApp_Image_2026-08-13_at_17.08.03_800w.jpg 800w"
+                    sizes="(max-width: 480px) 90vw, (max-width: 768px) 45vw, 280px"
+                    alt="VibeVault Musica community event photo 6"
+                    loading="lazy">
+            </div>
         </main>
+
         <footer>
             <p>Contact: info@VibeVaultmusica.co.za | Phone: 011 555 0123 | Whatsapp: 078 555 0123</p>
-            <p> 2026 VibeVault Musica - Alexandra, South African</p>
+            <p>&copy; 2026 VibeVault Musica - Alexandra, South Africa</p>
         </footer>
 
-        <script src="script.js"></script>
+        <script src="js/javascript.js"></script>
     </body>
 </html>
