@@ -1,78 +1,150 @@
-/* Custom VibeVault Styled Form */
-.form {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  font-family: inherit;
-  gap: 15px;
-  padding-inline: 2em;
-  padding-bottom: 0.4em;
-  background-color: var(--black);
-  border-radius: 20px;
+/* ==========================================================================
+   VibeVault Musica - External Master Stylesheet
+   ========================================================================== */
+
+:root {
+  --black: #121212;
+  --purple: #7B2CBF;
+  --gold: #FFD700;
+  --white: #ffffff;
+  --card-bg: #1e1e1e;
 }
 
-.form-heading {
-  text-align: center;
-  margin: 1.5em 0 0.5em 0;
-  color: var(--gold);
-  font-size: 1.4em;
-  font-weight: bold;
-  background-color: transparent;
-  align-self: center;
+/* Reset Defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.form-field {
+/* Global Dark Theme Base */
+html, body {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+  min-height: 100vh;
+}
+
+/* Animated Striped Background */
+body {
+  background: linear-gradient(
+    135deg,
+    #121212 25%,
+    #1a1a1a 25%,
+    #1a1a1a 50%,
+    #121212 50%,
+    #121212 75%,
+    #1a1a1a 75%,
+    #1a1a1a
+  );
+  background-size: 40px 40px;
+  animation: move 4s linear infinite;
+  line-height: 1.6;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+/* Header & Navigation */
+header {
+  background-color: var(--purple);
+  padding: 1rem 2rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  border-radius: 10px;
-  padding: 0.6em;
-  border: 1px solid rgba(123, 44, 191, 0.3);
-  outline: none;
-  color: white;
-  background-color: #1e1e1e;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.input-field {
-  background: none;
-  border: none;
-  outline: none;
-  width: 100%;
+header h2 {
   color: var(--white);
-  padding-inline: 0.5em;
-  font-size: 1rem;
 }
 
-.sendMessage-btn {
-  cursor: pointer;
-  margin-top: 1em;
-  margin-bottom: 2em;
-  padding: 1em;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: var(--gold);
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 12px;
   font-weight: bold;
-  outline: 2px solid var(--gold);
-  transition: all ease-in-out 0.3s;
+  transition: color 0.2s ease-in-out;
 }
 
-.sendMessage-btn:hover {
-  transition: all ease-in-out 0.3s;
+nav a:hover {
+  color: var(--gold);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(180deg, var(--purple), var(--black));
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  color: var(--white);
+  font-size: 1.1rem;
+}
+
+/* General Buttons */
+.btn { 
   background-color: var(--gold);
   color: var(--black);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.4);
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease-in-out;
 }
 
+.btn:hover {
+  background-color: #e6c200;
+}
+
+/* Product Cards & Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.product {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(123, 44, 191, 0.3);
+}
+
+.product h3 {
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.product p {
+  color: #ccc;
+  margin-bottom: 0.8rem;
+}
+
+/* Form Styles */
 .form-card1 {
   background-image: linear-gradient(163deg, var(--purple) 0%, var(--gold) 100%);
   border-radius: 22px;
-  transition: all 0.3s;
   padding: 2px;
+  transition: all 0.3s;
 }
 
 .form-card1:hover {
@@ -81,10 +153,67 @@
 
 .form-card2 {
   border-radius: 20px;
-  transition: all 0.2s;
   background-color: var(--black);
+  padding: 1rem;
 }
 
-.form-card2:hover {
-  transform: scale(0.99);
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-heading {
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.form-field {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 0.6em;
+  border: 1px solid rgba(123, 44, 191, 0.3);
+}
+
+.input-field {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--white);
+  font-size: 1rem;
+}
+
+.sendMessage-btn {
+  cursor: pointer;
+  margin-top: 1em;
+  padding: 0.8em;
+  border-radius: 10px;
+  border: 2px solid var(--gold);
+  background-color: transparent;
+  color: var(--gold);
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.sendMessage-btn:hover {
+  background-color: var(--gold);
+  color: var(--black);
+  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Footer */
+footer {
+  background-color: var(--purple);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+footer p {
+  margin: 0.3rem 0;
 }
